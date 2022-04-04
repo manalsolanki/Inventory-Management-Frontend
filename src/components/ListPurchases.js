@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
-import axios from "axios";
+import axios from "../config"
 import { Link } from "react-router-dom";
 import PurchasedItem from "./PurchasedItem";
 const ListPurchases = (props) => {
     const [purchasedList, setPurchasedList] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:3010/items/purchaseditem')
+        axios.get('items/purchaseditem')
             .then(function (response) {
                 setPurchasedList(response.data.items);
             })

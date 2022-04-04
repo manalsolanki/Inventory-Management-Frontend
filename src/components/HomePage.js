@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CurrentItemDetail from "./CurrentItemDetail";
 import { Alert } from "react-bootstrap";
-import axios from "axios";
+import axios from "../config"
 const HomePage = (props) => {
     const [currentItemList, setCurrentItemList] = useState([]);
     const [alertShow, setAlertShow] = useState(false);
@@ -10,7 +10,7 @@ const HomePage = (props) => {
         fetchData();
     }, []);
     const fetchData = () => {
-        axios.get('http://localhost:3010/items/currentitems')
+        axios.get('items/currentitems')
             .then(function (response) {
                 setCurrentItemList(response.data.items);
             })

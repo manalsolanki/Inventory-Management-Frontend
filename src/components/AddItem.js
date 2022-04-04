@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../config";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom"
 function AddItem() {
@@ -18,7 +18,7 @@ function AddItem() {
     const [dateOfPurchase, setDateOfPurchase] = useState();
     const [error, setError] = useState({ itemNameErr: "", quantityErr: "", unitErr: "", priceErr: "", dateOfPurchaseErr: "", newItemNameErr: "" })
     useEffect(() => {
-        axios.get('http://localhost:3010/items')
+        axios.get('items')
             .then(function (response) {
                 setItemList(response.data.items);
                 setItemList((items) => [...items, { item_name: "Other", id: 0 }])
@@ -78,7 +78,7 @@ function AddItem() {
     const addPurchasedItem = async () => {
         let itemNo = (itemList.find((item) => item.item_name === itemName)).id
         const newData = { item_no: itemNo, item_name: newItemName, date_of_purchase: dateOfPurchase, quantity: parseFloat(quantity), units: unit, price: parseFloat(price) }
-        const response = await axios.post('http://localhost:3010/items/addpurchaseditem', newData)
+        const response = await axios.post('items/addpurchaseditem', newData)
             .then(function (response) {
                 return (response);
             })
