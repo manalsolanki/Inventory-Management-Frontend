@@ -1,4 +1,3 @@
-import { Axios } from "axios";
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom"
@@ -7,7 +6,7 @@ import axios from "../config";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+    const [setCookie] = useCookies(['user']);
     const [validationErr, setValidationErr] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [password, setPassword] = useState("");

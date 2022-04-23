@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../config";
 const Header = () => {
     const navigate = useNavigate();
-    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+    const [setCookie] = useCookies(['user']);
 
     const logOut = () => {
         console.log("Inside Logout")
