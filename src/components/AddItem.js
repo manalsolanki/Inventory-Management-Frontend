@@ -8,7 +8,8 @@ function AddItem() {
     const [newItem, setNewItem] = useState(false);
     const [itemList, setItemList] = useState([]);
     // Status check
-    const [responseError, setResponseError] = useState(false);
+    // const [responseError, setResponseError] = useState(false);
+    const [responseErrMsg, setResponseErrMsg] = useState("");
     // FormInput
     const [itemName, setItemName] = useState("");
     const [newItemName, setNewItemName] = useState("");
@@ -89,8 +90,11 @@ function AddItem() {
         if (response.status === 200) {
             navigate("/", { replace: true });
         }
+        else if (response.response.status === 401) {
+            setResponseErrMsg("Login Required")
+        }
         else {
-            setResponseError(true)
+            setResponseErrMsg("Enter the same details")
         }
         // setResponseStatus(response.status);
     }
@@ -98,11 +102,11 @@ function AddItem() {
 
     return <section className="mt-3 text-center">
         <div className="wrapper" >
-            {responseError &&
-                <Alert variant="danger" onClose={() => setResponseError(false)} dismissible>
+            {responseErrMsg &&
+                <Alert variant="danger" onClose={() => setResponseErrMsg("")} dismissible>
                     <Alert.Heading>Sorry ! Please try again</Alert.Heading>
                     <p>
-                        Enter the same details
+                        {responseErrMsg}
                     </p>
                 </Alert>}
             <h2 className="text-center">Add A New Purchase</h2>

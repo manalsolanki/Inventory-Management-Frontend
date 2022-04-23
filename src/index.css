@@ -71,3 +71,11 @@ a:hover {
 .modal-body input {
   width: 50%;
 }
+
+.login-form{
+  margin-top: 3em;
+  max-width: 400px;
+}
+.smallFont{
+  font-size: 12px;
+}

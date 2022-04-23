@@ -9,6 +9,8 @@ import {
   Routes,
 
 } from "react-router-dom";
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/additem' element={<AddItem />} />
           <Route path='/allpurchase' element={<ListPurchases />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </Router>
     </div>

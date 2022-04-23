@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
-import axios from "axios";
+import axios from "../config"
 function CurrentItemDetail(props) {
     const navigate = useNavigate();
     const currentItem = props.currentItems
@@ -24,8 +24,8 @@ function CurrentItemDetail(props) {
     const updateQuantity = () => {
         setShow(false)
 
-        const updateData = { id: currentItem.id, quantity: currentItem.quantity - quantity }
-        axios.post('http://localhost:3010/items/updatecurrentitem', updateData)
+        const updateData = { id: currentItem.id, quantity: Number.parseFloat(currentItem.quantity - quantity).toFixed(2) }
+        axios.post('/items/updatecurrentitem', updateData)
             .then(function (response) {
                 navigate("/", { replace: true });
                 return (response);

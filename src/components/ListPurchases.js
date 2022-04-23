@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 import axios from "../config"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PurchasedItem from "./PurchasedItem";
 const ListPurchases = (props) => {
+    const navigate = useNavigate();
     const [purchasedList, setPurchasedList] = useState([]);
     useEffect(() => {
         axios.get('items/purchaseditem')
@@ -11,6 +12,9 @@ const ListPurchases = (props) => {
                 setPurchasedList(response.data.items);
             })
             .catch(function (error) {
+                if (error.response.status === 401) {
+                    navigate("/login", { replace: true })
+                }
                 console.log(error);
             })
     }, []);

@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import CurrentItemDetail from "./CurrentItemDetail";
 import { Alert } from "react-bootstrap";
 import axios from "../config"
+import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 const HomePage = (props) => {
+    const navigate = useNavigate();
     const [currentItemList, setCurrentItemList] = useState([]);
     const [alertShow, setAlertShow] = useState(false);
     const [alertItemName, setAlertItemName] = useState("");
+    const cookies = new Cookies();
     useEffect(() => {
         fetchData();
     }, []);
@@ -15,6 +19,9 @@ const HomePage = (props) => {
                 setCurrentItemList(response.data.items);
             })
             .catch(function (error) {
+                if (error.response.status === 401) {
+                    navigate("/login", { replace: true });
+                }
                 console.log(error);
             })
     }
