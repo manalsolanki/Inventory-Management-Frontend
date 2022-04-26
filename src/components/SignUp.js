@@ -53,7 +53,7 @@ const SignUp = () => {
         setError(errorSet);
         if (flag) {
             const newData = { first_name: firstName, last_name: lastName, email: email, password: password };
-            const response = axios.post('/user/adduser', newData)
+            axios.post('/user/adduser', newData)
                 .then(function (response) {
                     navigate("/login", { replace: true });
                 })

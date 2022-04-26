@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "../config";
 const Header = () => {
     const navigate = useNavigate();
-    const [setCookie] = useCookies(['user']);
-
     const logOut = () => {
         console.log("Inside Logout")
-        setCookie('token', "")
+        localStorage.removeItem('token')
         axios.defaults.headers = { "Authorization": "" }
         navigate("/login", { replace: true });
     }

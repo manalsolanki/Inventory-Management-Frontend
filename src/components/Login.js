@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom"
-import { useCookies } from 'react-cookie';
 import axios from "../config";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [setCookie] = useCookies(['user']);
     const [validationErr, setValidationErr] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +27,7 @@ const Login = () => {
             axios.post('/user/loginuser', { userEmail, password })
                 .then(response => {
                     console.log(response)
-                    setCookie('token', response.data.token, { path: '/' })
+                    localStorage.setItem("token", response.data.token)
                     axios.defaults.headers = { "Authorization": response.data.token }
                     navigate("/", { replace: true });
                 })
