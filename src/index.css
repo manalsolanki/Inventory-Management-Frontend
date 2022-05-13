@@ -51,7 +51,14 @@ table {
 thead {
   background-color: rgb(141, 197, 180);
 }
-
+.header-link{
+  color:rgb(47, 79, 79)
+}
+.header-link:hover{
+   color: white;
+  font-weight: bold;
+  padding: 0px;
+}
 a:hover {
   color: white;
   font-weight: bold;

@@ -28,7 +28,10 @@ const Login = () => {
                 .then(response => {
                     console.log(response)
                     localStorage.setItem("token", response.data.token)
-                    axios.defaults.headers = { "Authorization": response.data.token }
+                    localStorage.setItem("userid", response.data.userId)
+                    axios.defaults.headers = {
+                        "Authorization": response.data.token, "UserId": response.data.userId
+                    }
                     navigate("/", { replace: true });
                 })
                 .catch(function (err) {

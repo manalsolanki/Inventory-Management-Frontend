@@ -78,7 +78,7 @@ function AddItem() {
     }
     const addPurchasedItem = async () => {
         let itemNo = (itemList.find((item) => item.item_name === itemName)).id
-        const newData = { item_no: itemNo, item_name: newItemName, date_of_purchase: dateOfPurchase, quantity: parseFloat(quantity), units: unit, price: parseFloat(price) }
+        const newData = { item_no: itemNo, item_name: newItemName, date_of_purchase: dateOfPurchase, quantity: parseFloat(quantity), units: unit, price: parseFloat(price), user_id: localStorage.getItem('userid') }
         const response = await axios.post('items/addpurchaseditem', newData)
             .then(function (response) {
                 return (response);

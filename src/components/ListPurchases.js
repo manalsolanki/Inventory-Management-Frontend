@@ -23,22 +23,27 @@ const ListPurchases = (props) => {
             <h2>All Purchases</h2>
             <Link to='/additem'><Button className="btn btn-primary">Add a New Purchase</Button></Link>
         </div>
+        {purchasedList.length < 1 ? <p>
+            No Data available. Please Enter some data.
+        </p>
+            :
+            <table className="table table-hover" >
+                <thead>
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {purchasedList.map((purchasedItem) => {
+                        return <PurchasedItem allPurchases={purchasedItem} key={purchasedItem.id} />
+                    })}
+                </tbody>
+            </table>
+        }
 
-        <table className="table table-hover" >
-            <thead>
-                <tr>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {purchasedList.map((purchasedItem) => {
-                    return <PurchasedItem allPurchases={purchasedItem} key={purchasedItem.id} />
-                })}
-            </tbody>
-        </table>
     </section>
 
 }
